@@ -1,0 +1,115 @@
+package DSA.journey.LinkedLists;
+class ListNode {
+    public int val;
+    public ListNode right;
+    public ListNode down;
+    ListNode(int x) { val = x; right = null;down=null; }
+}
+public class FlattenLinkedList {
+    public static void print(ListNode head){
+        ListNode temp=head;
+        while(temp!=null){
+            System.out.print(temp.val+" ");
+            temp=temp.right;
+        }
+        System.out.println("");
+    }
+    public static void main(String[] args) {
+        ListNode head=new ListNode(3);
+        head.down=new ListNode(7);
+        head.down.down=new ListNode(7);
+        head.down.down.down=new ListNode(8);
+        head.right=new ListNode(4);
+        head.right.down=new ListNode(11);
+        head.right.right=new ListNode(20);
+        head.right.right.down=new ListNode(22);
+        ListNode ans=new FlattenLinkedList().flatten(head);
+        print(ans);
+
+
+    }
+    ListNode flatten(ListNode root) {
+
+        ListNode head=root;
+        while(head!=null){
+
+            ListNode td=head.down;
+            while(td!=null){
+             ListNode temp=head.right;
+             head.right=td;
+             td.right=temp;
+             td=td.down;
+             head.down=null;
+             head=head.right;
+            }
+            head=head.right;
+
+        }
+  //  print(root);
+    return merge(root);
+    }
+
+
+
+    public ListNode merge(ListNode head){
+        if(head==null)return head;
+        if(head.right==null)return head;
+
+        ListNode c=middleNode(head);
+        ListNode h2=c.right;
+        c.right=null;
+        head=merge(head);
+        h2=merge(h2);
+        return mergeTwoLists(head,h2);
+
+
+    }
+    public ListNode middleNode(ListNode head){
+        ListNode slow=head;
+        ListNode fast=head;
+        while(fast.right!=null && fast.right.right!=null){
+            slow=slow.right;
+            fast=fast.right.right;
+        }
+        return slow;
+    }
+
+
+    public ListNode mergeTwoLists(ListNode h1, ListNode h2) {
+        if(h1==null)return h2;
+        if(h2==null)return h1;
+
+        ListNode h3=null;
+
+        if(h1.val<h2.val){
+            h3=h1;
+            h1=h1.right;
+        }else{
+            h3=h2;
+            h2=h2.right;
+        }
+        ListNode head=new ListNode(1);
+        head.right=h3;
+        while(h1!=null && h2!=null){
+            if(h1.val<h2.val){
+                h3.right=h1;
+                h1=h1.right;
+                h3=h3.right;
+            }
+            else{
+                h3.right=h2;
+                h2=h2.right;
+                h3=h3.right;
+            }
+        }
+        if(h1==null){
+            h3.right=h2;
+        }
+        if(h2==null){
+            h3.right=h1;
+        }
+
+        return head.right;
+
+    }
+}

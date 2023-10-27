@@ -10,7 +10,7 @@ public class LRUCache {
 
     int capcity;
 
-    Map<Integer, Node> map =null;
+    Map<Integer, Node> map = null;
 
     Deque<Node> queue = null;
 
@@ -25,7 +25,7 @@ public class LRUCache {
 
     public LRUCache(int capacity) {
         this.capcity = capacity;
-        map= new HashMap();
+        map = new HashMap();
         queue = new LinkedList();
     }
 
@@ -42,35 +42,19 @@ public class LRUCache {
 
     }
 
-    public void put(int key, int value) {
+    public void set(int key, int value) {
 
         if (queue.size() == capcity) {
-
             Node node = node = new Node(key, value);
-
             if (map.get(key) != null) {
-
                 Node storedNode = map.get(key);
-
-            //    System.out.println("replacing " + "with new value of key " + key);
-
                 queue.remove(storedNode);
                 queue.addFirst(node);
                 map.put(key, node);
-
-
-            }else {
-
-
-                System.out.println("Cache is full");
-
-                System.out.println("removing the least recently used element");
-
+            } else {
                 Node last = queue.getLast();
-
                 queue.removeLast();
                 map.remove(last.getKey());
-                System.out.println("adding new element at beggining");
                 queue.addFirst(node);
                 map.put(key, node);
             }
@@ -78,25 +62,26 @@ public class LRUCache {
 
         } else {
             Node node = node = new Node(key, value);
-            ;
-
             if (map.get(key) != null) {
-
                 Node storedNode = map.get(key);
-
-                System.out.println("replacing " + "with new value of key " + key);
-
                 queue.remove(storedNode);
-
-
             }
-            System.out.println("this node is not present in node , adding this");
             queue.addFirst(node);
             map.put(key, node);
 
-
         }
 
+    }
+
+    public static void main(String[] args) {
+        LRUCache lru=new LRUCache(2);
+        System.out.println(lru.get(2));
+        lru.set(2,6);
+        System.out.println(lru.get(1));
+        lru.set(1,5);
+        lru.set(1,2);
+        System.out.println(lru.get(1));
+        System.out.println(lru.get(2));
     }
 
 

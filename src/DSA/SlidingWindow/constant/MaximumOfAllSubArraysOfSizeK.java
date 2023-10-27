@@ -27,13 +27,6 @@ public class MaximumOfAllSubArraysOfSizeK {
             }
             else if(j-i+1==k){
 
-//                if(temp.size()>0) {
-//                  if(temp.get(0)<max) { temp.set(0,max);}
-//
-//                }
-//                else{
-//                    temp.add(max);
-//                }
                 if(temp.size()==0)ans.add(-1);
                 else{
                     ans.add(temp.get(0));

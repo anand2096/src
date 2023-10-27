@@ -19,6 +19,9 @@ public class MinimumDifference {
             int min=Integer.MAX_VALUE;
             for(int j=0;j<n;j++){
 
+
+
+
                 int element=mat[i][j];
                 int closestElement=BS(0,mat[i+1].length-1,mat[i+1],element);
                 min=Math.min(min,Math.abs(element-closestElement));

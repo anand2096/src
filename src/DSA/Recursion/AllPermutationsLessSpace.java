@@ -13,7 +13,8 @@ public class AllPermutationsLessSpace {
     List<Integer> test= Arrays.asList(1,3,2);
 
     public static void main(String[] args) {
-        int[] nums = {1,2,3};
+        int [] nums = {235745376,19645448,157163584,471490752,117872688,589363440,294681720,147340860,442022580,73670430,12278405,110505645,773539515,257846505};
+
 
         new AllPermutationsLessSpace().rec(0,nums);
         System.out.println(ts);
@@ -27,11 +28,7 @@ public class AllPermutationsLessSpace {
             for(int j=0;j<nums.length;j++){
                 temp.add(nums[j]);
             }
-            if(temp.equals(test))
-            {
-                System.out.println(test);
-                System.out.println(ts.size()+1);
-            }
+
             ts.add(new ArrayList<>(temp));
 
             return;

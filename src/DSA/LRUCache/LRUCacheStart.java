@@ -14,14 +14,14 @@ public class LRUCacheStart {
         LRUCache lruCache=new LRUCache(2);
         System.out.println(lruCache.get(2));
         System.out.println(lruCache);
-        lruCache.put(2,6);
+        lruCache.set(2,6);
         System.out.println(lruCache);
         System.out.println(lruCache.get(1));
         System.out.println(lruCache);
 
-        lruCache.put(1,5);
+        lruCache.set(1,5);
         System.out.println(lruCache);
-        lruCache.put(1,2);
+        lruCache.set(1,2);
         System.out.println(lruCache);
         System.out.println(  lruCache.get(1));
         System.out.println(lruCache);

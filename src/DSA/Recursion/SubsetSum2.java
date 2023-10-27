@@ -8,7 +8,7 @@ import java.util.List;
 public class SubsetSum2 {
 
     public static void main(String[] args) {
-        int arr[]={3,1,2};
+        int arr[]={3,4,5};
         System.out.println(new SubsetSum2().subsetSum(arr));
 
     }
